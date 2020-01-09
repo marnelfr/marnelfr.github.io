@@ -37,6 +37,7 @@ let pages3 = db.ref('speach/pages/3').set({
 (function() {
     db.ref('speach/current_page').on('value', function (snapshot) {
         if (domContentLoaded) {
+            domContentLoaded = false
             return
         }
         alert(snapshot.val())
