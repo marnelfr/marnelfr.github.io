@@ -2,6 +2,7 @@
 let config = { apiKey: "AIzaSyAkIVUSC7sG-ikSAvE0P6-TgyfQ8u4k7FY", authDomain: "test-b390c.firebaseapp.com", databaseURL: "https://test-b390c.firebaseio.com", projectId: "test-b390c", storageBucket: "test-b390c.appspot.com", messagingSenderId: "650968103355", appId: "1:650968103355:web:9dfe847610591501c2ac9e" };
 // Initialize Firebase
 firebase.initializeApp(config);
+let domContentLoaded = true
 
 // Initialize Firebase with a second Firebase project
 //var otherProject = firebase.initializeApp(otherProjectFirebaseConfig, "other");
@@ -35,6 +36,9 @@ let pages3 = db.ref('speach/pages/3').set({
 
 (function() {
     db.ref('speach/current_page').on('value', function (snapshot) {
+        if (domContentLoaded) {
+            return
+        }
         alert(snapshot.val())
     })
 })()
