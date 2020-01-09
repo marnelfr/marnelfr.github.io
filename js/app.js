@@ -14,7 +14,16 @@ let db = firebase.database();
 /*let speach = db.ref('speach').set({
     current_page: 1
 });*/
-/*let pages2 = db.ref('speach/pages/2').set({
+/*let pages2 = db.ref('speach/pages/1').set({
+    title: "Acceuil",
+    content: `<div style='display: table; height: 60%; width: 100%; text-align: center;'>
+        <span style='display: table-cell; vertical-align: middle;'>
+            <h1 style='color: #3c8dbc; font-size: 40px'>Accueil</h1>
+        </span>
+    </div>
+    `
+})
+let pages2 = db.ref('speach/pages/2').set({
     title: "Acceuil",
     content: `<div style='display: table; height: 60%; width: 100%; text-align: center;'>
         <span style='display: table-cell; vertical-align: middle;'>
@@ -38,10 +47,6 @@ let pages3 = db.ref('speach/pages/3').set({
 
 (function() {
     db.ref('speach/current_page').on('value', function (snapshot) {
-        if (domContentLoaded) {
-            domContentLoaded = false
-            return
-        }
         let new_page = snapshot.val();
         db.ref('speach/pages/'+new_page).once('value').then(function (snapshot) {
             if(snapshot.exists()) {
