@@ -77,9 +77,6 @@
         <h5>Time Left Until Launching</h5>
 
         <div id="counter" class="cf">
-                <?php
-
-                ?>
           <span><span id="jour">6</span> <em>days</em></span>
           <span><span id="heure">12</span> <em>hours</em></span>
           <span><span id="minute">1</span> <em>minutes</em></span>
@@ -285,7 +282,7 @@
 
             var jour = sjour.innerText;
             var heure = sheure.innerText;
-            var minute = sminute.innerText;
+            var minute = sminute.innerText; 
             var seconde = sseconde.innerText;
 
             if(parseInt(seconde)>0){
@@ -322,20 +319,13 @@
 
 
 
-        <?php
-        if(isset($_SESSION['done']) and $_SESSION['done']){
-            unset($_SESSION['done']);
-            ?>
             function ins(){
                 alert("Thanks for your inscription!!");
             }
 
             function inscrit() {
-                setTimeout('ins()', 5000);
+                setTimeout('ins', 5000);
             }
-            <?php
-        }
-        ?>
 
     </script>
    <!-- Java Script
