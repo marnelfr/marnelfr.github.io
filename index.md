@@ -5,7 +5,7 @@
 <body>
 <div align="center">
 	<h2>Speach Delivery</h2>
-	<a href="page.html">Page</a>
+	<a href="page.md">Page</a>
 </div>
 </body>
 </html>
