@@ -3,6 +3,8 @@ let config = { apiKey: "AIzaSyAkIVUSC7sG-ikSAvE0P6-TgyfQ8u4k7FY", authDomain: "t
 // Initialize Firebase
 firebase.initializeApp(config);
 let domContentLoaded = true
+let title = document.querySelector('#title')
+let content = document.querySelector('#content')
 
 // Initialize Firebase with a second Firebase project
 //var otherProject = firebase.initializeApp(otherProjectFirebaseConfig, "other");
@@ -40,7 +42,14 @@ let pages3 = db.ref('speach/pages/3').set({
             domContentLoaded = false
             return
         }
-        alert(snapshot.val())
+        let new_page = snapshot.val();
+        db.ref('speach/pages/'+new_page).once('value').then(function (snapshot) {
+            if(snapshot.exists()) {
+                let page = snapshot.val()
+                title.innerText = page.title
+                content.innerHTML = page.content
+            }
+        })
     })
 })()
 
@@ -57,9 +66,15 @@ function updatePage(btn, action) {
         e.preventDefault()
         db.ref('speach/current_page').once('value').then(function (snapshot) {
             let current = snapshot.val()
-            db.ref('speach').update({
-                current_page: action === 'next' ? ++current : --current
-            });
+            let nextPage = action === 'next' ? ++current : --current;
+            db.ref('speach/pages/'+nextPage).once('value').then(function (page) {
+                if (page.exists()) {
+                    db.ref('speach').update({
+                        current_page: nextPage
+                    });
+                }
+            })
+
         })
     })
 }
