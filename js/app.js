@@ -267,7 +267,7 @@ function counter(timer) {
 
     intervalTiece = setInterval(function () {
         tiece--
-        tiece = withZero(tiece)
+        tiece = withZero(tiece.toString())
         timer.text(min+':'+sec+':'+tiece)
         if (tiece < 5) {
             clearInterval(intervalTiece)
@@ -279,5 +279,6 @@ function withZero(min){
     if (min < 10) {
         min = '0' + parseInt(min)
     }
+
     return min
 }
