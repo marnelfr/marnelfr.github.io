@@ -4,7 +4,7 @@ let config = { apiKey: "AIzaSyAkIVUSC7sG-ikSAvE0P6-TgyfQ8u4k7FY", authDomain: "t
 firebase.initializeApp(config);
 let domContentLoaded = true
 let title = document.querySelector('#title'),
-    interval, intervalTiece, online = false
+    interval,
     content = document.querySelector('#content')
 const loader = '<span class="img _55ym _55yq _55yo" role="progressbar" aria-valuetext="Chargement..." aria-busy="true" aria-valuemin="0" aria-valuemax="100"></span>'
 
@@ -49,41 +49,25 @@ let pages3 = db.ref('speach/pages/3').set({
 
 (function() {
     //Authentification
-    const manager = $('#manager'),
-        emailInp = $('#email'),
-        pwdInp = $('#password'),
-        connexion = $('#connexion')
+    let manager = $('#manager')
     manager.on('click', function (e) {
         e.preventDefault()
         $('#modal').modal('show')
     })
 
-    emailInp.on('keydown', function (e) {
-        if(e.keyCode === 13) {
-            login(e, connexion)
-        }
-    })
-
-    pwdInp.on('keydown', function (e) {
-        if(e.keyCode === 13) {
-            login(e, connexion)
-        }
-    })
-
+    const btn_div = $('#btn_container')
+    const connexion = $('#connexion')
     connexion.on('click', function (e) {
-        login(e, connexion)
-    })
-    function login(e, connexion) {
         e.preventDefault()
-        let email = emailInp.val()
-        let password = pwdInp.val()
+        let email = $('#email').val()
+        let password = $('#password').val()
 
         loading(connexion)
 
         firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
             reset(connexion)
             if (firebase.auth().currentUser) {
-                const modal = $('.modal'),
+                let modal = $('.modal'),
                     btn_container = $('#btn_container'),
                     timer = $('#timer');
 
@@ -93,44 +77,15 @@ let pages3 = db.ref('speach/pages/3').set({
                     <button class="btn btn-info btn-flat pull-right" id="next">Next</button>
                 `)
                 timer.html('<button id="start" class="btn btn-sm btn-info">Start</button>')
-                timer.parent().append('<div style="padding: 0.5em" class="pull-left" id="div_logout"><button class="btn btn-sm btn-info" id="disconnect">Stop</button></div>')
 
-                //Start timer
                 $('#start').on('click', function (e) {
                     e.preventDefault()
                     loading($(this))
-                    db.ref('speach').update({
-                        current_page: 1,
-                        online: true,
-                        timer: {
-                            started: true,
-                            minute: 20
-                        }
+                    db.ref('speach/timer').update({
+                        started: true,
+                        minute: 20
                     })
                 })
-                //!Start timer
-
-                //Disconnect
-                $('#disconnect').on('click', function (e) {
-                    e.preventDefault()
-                    let btn = $(this)
-                    loading(btn)
-                    let user = firebase.auth().currentUser;
-                    if (user && user.email === 'nel@dev.io') {
-                        db.ref('speach').update({
-                            online: false,
-                            timer: {
-                                started: false,
-                                minute: 20
-                            }
-                        }).then(function () {
-                            firebase.auth().signOut()
-                            $('#div_logout').hide('slow')
-                        })
-                    }
-                })
-                //!Disconnect
-
                 //Manager btn
                 updatePage('next')
                 updatePage('previous')
@@ -139,24 +94,15 @@ let pages3 = db.ref('speach/pages/3').set({
         }).catch(function() {
             reset(connexion)
         });
-    }
+
+
+
+    })
     //!Authentification
 
     //Loading page
     db.ref('speach/current_page').on('value', function (snapshot) {
-        if(!online) {
-            db.ref('speach/online').once('value', function (snap) {
-                if(snap.val()) {
-                    online = true
-                    loadPage(snapshot)
-                }
-            })
-        }else{
-            loadPage(snapshot)
-        }
-    })
-    function loadPage(snap) {
-        let new_page = snap.val();
+        let new_page = snapshot.val();
         db.ref('speach/pages/'+new_page).once('value').then(function (snapshot) {
             if(snapshot.exists()) {
                 let page = snapshot.val()
@@ -164,7 +110,7 @@ let pages3 = db.ref('speach/pages/3').set({
                 content.innerHTML = page.content
             }
         })
-    }
+    })
     //!Loading page
 
     //Start timer
@@ -176,6 +122,7 @@ let pages3 = db.ref('speach/pages/3').set({
                 startTimer(timer)
             })
         }else{
+            console.log('oko')
             clearInterval(interval)
             setTimeout(function () {
                 timer.text('20:00:00')
@@ -185,9 +132,15 @@ let pages3 = db.ref('speach/pages/3').set({
     //!Start timer
 
     //On user leaving
-    //window.onbeforeunload = function(){
-    //    return 'Sure you when to leave ?'
-    //};
+    window.onbeforeunload = function(){
+        let user = firebase.auth().currentUser;
+        if (user && user.email === 'nel@dev.io') {
+            db.ref('speach/timer').update({
+                started: false,
+                minute: 20
+            })
+        }
+    };
     //!On user leaving
 })()
 
@@ -258,27 +211,24 @@ function counter(timer) {
 
     timer.text(min+':'+sec+':'+tiece)
 
-    if (min === '00' && (sec === '00' || sec === '0-1')) {
+    if (min === '00' && sec === '00') {
         clearInterval(interval)
-        clearInterval(intervalTiece)
-        timer.text('00:00:00')
         return
     }
 
-    intervalTiece = setInterval(function () {
+    let i = setInterval(function () {
         tiece--
-        tiece = withZero(tiece.toString())
+        tiece = withZero(tiece)
         timer.text(min+':'+sec+':'+tiece)
         if (tiece < 5) {
-            clearInterval(intervalTiece)
+            clearInterval(i)
         }
     }, 10)
 }
 
 function withZero(min){
     if (min < 10) {
-        min = '0' + parseInt(min)
+        min = '0'+min
     }
-
     return min
 }
