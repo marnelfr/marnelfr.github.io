@@ -6,23 +6,112 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Marnel | Speach Delivery</title>
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        @-webkit-keyframes rotateSpinner {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        @keyframes rotateSpinner {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        ._55yq {
+            padding:0;
+            background-image: url("images/face.png");
+            height: 24px;
+            width: 24px;
+        }
+        ._55ym {
+            padding:0;
+            animation: rotateSpinner 1.2s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+
+
+
+
+
+
+        @-webkit-keyframes rotatSpinner {
+            to {
+                -webkit-transform: rotate(360000deg);
+            }
+        }
+        @keyframes rotatSpinner {
+            to {
+                transform: rotate(360000deg);
+            }
+        }
+
+
+
+        ._54ym {
+
+
+
+            animation: rotatSpinner 0.2s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .second{
+            box-sizing: border-box;
+            width: 26px; height: 26px;
+            position: absolute;
+            top: 13px;
+            left: 15px;
+            border-width: 3px;
+            border-style: solid;
+            border-color: rgba(51, 54, 58, 0.4) transparent;
+            border-radius: 13px;
+        }
+
+    </style>
 </head>
 <body>
-<div id="title"></div>
-<div id="content">
-    <div style='display: table; height: 60%; width: 100%; text-align: center;'>
-        <span style='display: table-cell; vertical-align: middle;'>
-            Loading...
-        </span>
+<div class="text-center container">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div style="padding: 0.5em" class="pull-right" id="timer">20:00:00</div>
+    </div>
+    <div id="title" class="col-md-4 col-sm-6 col-xs-8 col-sm-offset-3 col-md-offset-4 col-xs-offset-2">
+        Marnel GNACADJA
+    </div>
+    <div id="content" class="col-md-8 col-sm-10 col-xs-12 col-sm-offset-1 col-md-offset-2">
+        La page d'accueil du speach
+    </div>
+    <div class="col-md-8 col-sm-10 col-xs-12 col-sm-offset-1 col-md-offset-2" id="btn_container">
+        <button class="btn btn-info btn-flat" id="manager">Manage</button>
+    </div>
+
+
+
+    <div class="modal fade bd-example-modal-md" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="col-md-12">
+                    <div class="form-group" style="padding-top:1em;">
+                        <input type="text" id="email" class="form-control" placeholder="E-mail">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+                <div class="col-md-12" style="padding-bottom:1em;">
+                    <button id="connexion" class="btn btn-info">Connexion</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div>
-    <button id="previous">Previous</button>
-    <button id="next">Next</button>
-</div>
-
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
