@@ -390,6 +390,9 @@ function counter(timer) {
 }
 
 function withZero(min){
+    if(typeof min !== 'number') {
+        min = parseInt(min)
+    }
     if (min < 10) {
         min = '0'+min
     }
