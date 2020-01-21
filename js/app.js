@@ -199,6 +199,12 @@ let pages3 = db.ref('speach/pages/3').set({
 /*console.log(speach)*/
 
 (function() {
+    $('#keywords').on('click', function (e) {
+        e.preventDefault()
+        $('#key_content').toggle('slow')
+    })
+
+
     //Authentification
     let manager = $('#manager')
     manager.on('click', function (e) {
