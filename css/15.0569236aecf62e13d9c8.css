@@ -1,0 +1,4 @@
+.identity{padding-top:1em}.profile-container{padding-top:4em}.profile-name{font-size:1em;font-weight:bold}.profile-profession{font-size:1.2em;color:#aaa;font-family:"Raleway", sans-serif}
+
+.photo-profile{cursor:pointer;border-radius:200px;width:8em}.rotation{-webkit-animation:spinHorizontal 0.01s infinite;animation:spinHorizontal 0.01s infinite}@-webkit-keyframes spinHorizontal{0%{transform:rotateY(0deg)}50%{transform:rotateY(180deg)}100%{transform:rotateY(360deg)}}@keyframes spinHorizontal{0%{transform:rotateY(0deg)}50%{transform:rotateY(180deg)}100%{transform:rotateY(360deg)}}
+

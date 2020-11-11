@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>App</title>
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="col-12 text-center mt-5">
+    <img src="assets/english.jpg" alt="English learning picture">
+  </div>
+  <div class="col-6 offset-3 text-center mt-2">
+    <div class="form-group text-left">
+      <label for="name">Your name</label>
+      <input type="text" name="name" id="name" autofocus class="form-control">
+    </div>
+    <div class="form-group text-left">
+      <label for="email">Your e-mail</label>
+      <input type="email" name="email" id="email" class="form-control">
+    </div>
+    <div class="form-group">
+      <button id="get-started" class="btn btn-outline-primary">Get Started</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="app" style="display: none;">
+  <div id="main-content" class="col-12 col-ms-8 col-md-6 offset-sm-2 offset-md-3 text-center mt-5 border p-3">
+    <div class="p mb-4">
+      <p>Question <span id="quiz_number">0</span></p>
+      <h3 id="quiz"></h3>
+    </div>
+    <div id="propositions" class="row mt-3"></div>
+    <div class="col-12 text-center mt-4">
+      <button id="next" class="btn btn-outline-success pl-4 pr-4">Next</button>
+    </div>
+    <div class="row">
+      <div class="col-6 pl-0 ml-0 mt-4">
+        Player: <i id="player-name"></i>
+      </div>
+      <div class="col-6 mt-4 pr-0 mr-0 float-right">
+        Total: <b><span id="mark">0</span>/<span class="total-mark">22</span></b>
+      </div>
+    </div>
+  </div>
+  <div id="done-container" style="display: none;" class="col-12 col-ms-8 col-md-6 offset-sm-2 offset-md-3 text-center mt-5 border p-3">
+    <h3>Great, you've done</h3>
+    <p class="mt-5 mb-5">You've got<br> <b><span id="done-mark"></span>/<span class="total-mark">22</span></b></p>
+    <p>Grade: <b id="done-grade">0</b></p>
+    <p>Your best grade: <b id="best-grade">0</b></p>
+    <div class="form-group">
+      <button id="play-again" class="btn btn-outline-success">Try again</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/jquery-3.5.1.min.js"></script>
+<script src="assets/bootstrap.min.js"></script>
+<script>
+  $(function () {
+    let userInfo
+    let questionNumber = 0
+    const btnLoadingContent = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
+    let text = ''
+    let questions = []
+
+    let already_number = []
+    const next = $('#next')
+    const proposition_container = $('#propositions')
+    let mark = 0
+    const mark_container = $('#mark')
+    const mainContainer = $('#main-content')
+    const doneContainer = $('#done-container')
+    let totalMark
+
+
+    $('#get-started').on('click', function (e) {
+      e.preventDefault()
+      const btn = $(this)
+
+      btnLoading(btn)
+
+      const name = $('#name').val().trim()
+      const email = $('#email').val().trim()
+
+      if (name !== '' && email !== '' && validateEmail(email)) {
+        $.post('https://127.0.0.1:8000/api/english/new/user', {name, email}).then((data) => {
+          userInfo = data.user
+          questions = data.questions
+
+          $('#player-name').html(name)
+
+          totalMark = getTotalMark(questions)
+          $('.total-mark').text(totalMark)
+          generator(next)
+
+          btn.closest('.container').hide()
+          $('#app').show()
+          btnReset(btn)
+        })
+      } else {
+        btnReset(btn)
+      }
+    })
+
+
+
+    function getTotalMark(list) {
+      let total = 0
+      list.forEach(function (item) {
+        total += item.answer.length
+      })
+      return total;
+    }
+
+    function validateEmail(email) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    function getGrade (mark) {
+      const percentage = mark * 100 / totalMark
+      if (percentage < 60) {
+        return 'F'
+      } else if (percentage < 64) {
+        return 'D-'
+      } else if (percentage < 67) {
+        return 'D'
+      } else if (percentage < 70) {
+        return 'D+'
+      } else if (percentage < 74) {
+        return 'C-'
+      } else if (percentage < 77) {
+        return 'C'
+      } else if (percentage < 80) {
+        return 'C+'
+      } else if (percentage < 84) {
+        return 'B-'
+      } else if (percentage < 87) {
+        return 'B'
+      } else if (percentage < 90) {
+        return 'B+'
+      } else if (percentage < 94) {
+        return 'A-'
+      } else {
+        return 'A'
+      }
+    }
+
+    function generator(btn) {
+      questionNumber++
+      if (already_number.length < questions.length) {
+        btnReset(btn)
+        let rand_number = 0
+        do {
+          rand_number = Math.floor(Math.random() * questions.length) + 1
+        } while (already_number.indexOf(rand_number) >= 0)
+        already_number.push(rand_number)
+
+        const index = rand_number - 1
+        $('#quiz_number').text(questionNumber)
+        let question = questions[index]
+        $('#quiz').text(question.quiz)
+
+        proposition_container.text('')
+        question.propositions.forEach(function (proposition, key) {
+          proposition_container.append(
+            `<div class="text-left col-12 col-sm-6 col-md-6">
+              <div class="form-check pt-1 pb-2">
+                <input class="form-check-input proposition-item" type="checkbox" value="${proposition}" id="q-${rand_number}-a-${key}">
+                <label class="form-check-label" for="q-${rand_number}-a-${key}">
+                  ${proposition}
+                </label>
+              </div>
+            </div>`
+          )
+        })
+
+        /*
+        proposition_container.text('')
+        const totalProposition = question.propositions.length
+        const already_propo_number = []
+        let rand_propo_number = 0
+
+        for(let i=0 ; i<totalProposition ; i++) {
+          do {
+            rand_propo_number = Math.floor(Math.random() * totalProposition) + 1
+          } while (already_propo_number.indexOf(rand_number) >= 0)
+          already_propo_number.push(rand_propo_number)
+          proposition_container.append(
+            `<div class="text-left col-12 col-sm-6 col-md-6">
+              <div class="form-check pt-1 pb-2">
+                <input class="form-check-input proposition-item" type="checkbox" value="${question.propositions[i]}" id="q-${rand_number}-a-${i}">
+                <label class="form-check-label" for="q-${rand_number}-a-${i}">
+                  ${question.propositions[i]}
+                </label>
+              </div>
+            </div>`
+          )
+        }
+        */
+
+
+        let answered = []
+        $('.proposition-item').on('click', function () {
+          if ($(this).is(':checked')) {
+            answered.push($(this).attr('id'))
+          } else {
+            answered = answered.filter((id) => {return id !== $(this).attr('id')})
+          }
+        })
+
+        next.off('click').on('click', function (e) {
+          e.preventDefault()
+          btnLoading(btn)
+          answered.forEach(function (id) {
+            const ans = $('#'+id)
+            if (question.answer.indexOf(ans.val()) >= 0) {
+              ans.closest('div').attr('style', 'color: green')
+              mark++
+            } else {
+              ans.closest('div').attr('style', 'color: red')
+              mark--
+            }
+            mark_container.text(mark)
+          })
+          setTimeout(function () {
+            generator(btn)
+          }, 1000)
+        })
+      } else {
+        userInfo.mark = mark
+        $.post('https://127.0.0.1:8000/api/english/update/user', userInfo).then((data) => {
+          btnReset(btn)
+          $('#done-grade').text(getGrade(mark))
+          $('#done-mark').text(mark)
+          $('#best-grade').text(getGrade(data.mark))
+          mainContainer.hide()
+          doneContainer.show()
+
+          $('#play-again').off('click').on('click', function (e) {
+            e.preventDefault()
+            mark = 0
+            questionNumber = 0
+            mark_container.text(mark)
+            already_number = []
+            mainContainer.show()
+            doneContainer.hide()
+            generator(btn)
+          })
+        })
+
+      }
+    }
+
+    function btnLoading(btn) {
+      text = btn.text()
+      btn.html(btnLoadingContent)
+      btn.attr('disabled', true)
+    }
+
+    function btnReset(btn) {
+      text = text.trim() ? text : 'Next'
+      btn.text(text)
+      btn.removeAttr('disabled')
+    }
+
+  })
+</script>
+</body>
+</html>
