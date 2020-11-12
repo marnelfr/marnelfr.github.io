@@ -2,28 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ca54109-0f53-4fc6-bcdd-9abeffe8ad29" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/Arizonia-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/dist/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/dist/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gulpfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/GMLG.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/face.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/Stock exchange.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/page de garde.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/stock_exchange.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/english/assets/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/english/assets/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/english/assets/english.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/english/assets/jquery-3.5.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/english/index.html" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,17 +22,7 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="684" selection-start-column="684" selection-end-column="684" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,6 +35,13 @@
     </option>
     <option name="externalProjectsViewState">
       <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/index.html" />
+      </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -320,15 +300,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605136229621</updated>
-      <workItem from="1605136231602" duration="402000" />
+      <workItem from="1605136231602" duration="2392000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="402000" />
+    <option name="totallyTimeSpent" value="2392000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
@@ -360,10 +341,20 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="54" lean-forward="true" selection-start-column="54" selection-end-column="54" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="684" selection-start-column="684" selection-end-column="684" />
+          <caret column="36" lean-forward="true" selection-start-column="36" selection-end-column="36" />
         </state>
       </provider>
     </entry>
