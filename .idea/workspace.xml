@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ca54109-0f53-4fc6-bcdd-9abeffe8ad29" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/english/assets/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/english/assets/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/english/assets/english.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/english/assets/jquery-3.5.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/english/index.html" beforeDir="false" />
-    </list>
+    <list default="true" id="5ca54109-0f53-4fc6-bcdd-9abeffe8ad29" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +16,21 @@
     <fileColor scope="Non-Project Files (Material Palenight)" color="2f2e43" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/english.nel/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="62" column="56" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#b#0;n#p#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,6 +49,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/english.nel/index.html" />
       </list>
     </option>
   </component>
@@ -188,6 +197,11 @@
               <item name="marnelfr.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="marnelfr.github.io" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="marnelfr.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="marnelfr.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="english.nel" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -300,12 +314,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605136229621</updated>
-      <workItem from="1605136231602" duration="2392000" />
+      <workItem from="1605136231602" duration="2751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2392000" />
+    <option name="totallyTimeSpent" value="2751000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -321,7 +335,7 @@
       <window_info anchor="bottom" id="Version Control" />
       <window_info id="npm" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.7082111" />
+      <window_info anchor="bottom" id="Terminal" weight="0.7082111" />
       <window_info id="Favorites" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -355,6 +369,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="36" lean-forward="true" selection-start-column="36" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/english.nel/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="62" column="56" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#b#0;n#p#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
