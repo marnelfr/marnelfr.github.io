@@ -161,7 +161,6 @@
     function generator(btn) {
       questionNumber++
       if (already_number.length < questions.length) {
-        btnReset(btn)
         let rand_number = 0
         do {
           rand_number = Math.floor(Math.random() * questions.length) + 1
@@ -236,6 +235,7 @@
             mark_container.text(mark)
           })
           setTimeout(function () {
+            btnReset(btn)
             generator(btn)
           }, 1000)
         })
